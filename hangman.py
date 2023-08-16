@@ -54,11 +54,12 @@ def hangman(live, body, list, name):
     counter()
     # Start
     while True:
-        print(''.join(cipher) + '\n')
-        user = int(input(
-            f'{name} Selecciona una opcion (1 - 2)\n1- Decir letra \n2- Adivinar palabra\n'))
+        print('\n'+ ''.join(cipher) + '\n')
+        user = input(
+            f'{name} Selecciona una opcion (1 - 2)\n1- Decir letra \n2- Adivinar palabra\n').strip()  # noqa: E501
 
-        if user == 1:
+        # Option 1
+        if user == '1':
             letter = input('Letra: ')
             # If input letter is 1
             if len(letter) == 1:
@@ -81,9 +82,18 @@ def hangman(live, body, list, name):
             # If letter not 1
             else:
                 print('¡Escribiste mas de una letra o ninguna!')
-                
-                ### Corregir error input invalids and corregir funciones
+        # Option 2
+        elif user == '2':
+            word_guess = input(f'¡{name} Te la juegas a todo o nada! ¿Cual es la palabra ?: ')
 
+            if word_guess == word:
+                print(f'¡{name} excelente adivinaste la palabra! GANASTE.')
+                break
+            else:
+                print(f'¡{name} incorrecta! La palabra era: {word} . Intentalo nuevamente :(')
+                break
+        else:
+            print('Ingresa una opcion valida... (1 - 2)')
 
 # Level choice
 
@@ -92,8 +102,8 @@ def level_choice(name):
         level = input(f'''\n¡{name}! Escribe el numero del nivel que quieres jugar (Sin el punto)...
                       1. Facil
                       2. Medio
-                      3. Dificil\n''').strip()
-        return int(level) if 0 < int(level) <= 3 else print('Por favor escribe un numero valido (Entre 1 - 3).')
+                      3. Dificil\n''').strip()  # noqa: E501
+        return int(level) if 0 < int(level) <= 3 else print('Por favor escribe un numero valido (Entre 1 - 3).')  # noqa: E501
 
 # Func cipher word
 
