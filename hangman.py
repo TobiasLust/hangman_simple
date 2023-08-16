@@ -42,22 +42,50 @@ def main():
 def hangman(live, body, list, name):
     # Random choice word in list
     word = ch(list)
-    
+    # Cipher word
+    cipher = cipher_word(word)
+    # List letters incorrect
+    letters = []
+    # Body
+    incorrect = []
+
     print('¡El juego va a comenzar!\n En...')
-    
     # Counter 3 2 1 ...
     counter()
-    
     # Start
     while True:
-            
-        
-            
-    
+        print(''.join(cipher) + '\n')
+        user = int(input(
+            f'{name} Selecciona una opcion (1 - 2)\n1- Decir letra \n2- Adivinar palabra\n'))
+
+        if user == 1:
+            letter = input('Letra: ')
+            # If input letter is 1
+            if len(letter) == 1:
+                found = False
+                # Search letter
+                for i in range(len(word)):
+                    if letter == word[i]:
+                        cipher[i] = letter
+                        found = True
+                if not found:
+                    # If letter before incorrect
+                    if letter in letters:
+                        live -= 1
+                        incorrect.append(body[live])
+                    # Else push letter in list
+                    else:
+                        letters.append(letter)
+                        live -= 1
+                        incorrect.append(body[live])
+            # If letter not 1
+            else:
+                print('¡Escribiste mas de una letra o ninguna!')
+                
+                ### Corregir error input invalids and corregir funciones
 
 
 # Level choice
-
 
 def level_choice(name):
     while True:
@@ -68,6 +96,13 @@ def level_choice(name):
         return int(level) if 0 < int(level) <= 3 else print('Por favor escribe un numero valido (Entre 1 - 3).')
 
 # Func cipher word
+
+
+def cipher_word(word):
+    cipher_w = list()
+    for i in word:
+        cipher_w.append('*')
+    return cipher_w
 
 # Func correct word
 
