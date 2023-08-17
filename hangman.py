@@ -54,9 +54,9 @@ def hangman(live, body, list, name):
     counter()
     # Start
     while True:
-        print('\n'+ ''.join(cipher) + '\n')
+        print('\n' + ''.join(cipher) + '\n')
         user = input(
-            f'{name} Selecciona una opcion (1 - 2)\n1- Decir letra \n2- Adivinar palabra\n').strip()  # noqa: E501
+            f'{name} Selecciona una opcion (1 - 2)\n1- Decir letra \n2- Adivinar palabra\n').strip()
 
         # Option 1
         if user == '1':
@@ -79,23 +79,27 @@ def hangman(live, body, list, name):
                         letters.append(letter)
                         live -= 1
                         incorrect.append(body[live])
+                print(letters, incorrect)
             # If letter not 1
             else:
                 print('¡Escribiste mas de una letra o ninguna!')
         # Option 2
         elif user == '2':
-            word_guess = input(f'¡{name} Te la juegas a todo o nada! ¿Cual es la palabra ?: ')
+            word_guess = input(
+                f'¡{name} Te la juegas a todo o nada! ¿Cual es la palabra ?: ')
 
             if word_guess == word:
                 print(f'¡{name} excelente adivinaste la palabra! GANASTE.')
                 break
             else:
-                print(f'¡{name} incorrecta! La palabra era: {word} . Intentalo nuevamente :(')
+                print(
+                    f'¡{name} incorrecta! La palabra era: {word} . Intentalo nuevamente :(')
                 break
         else:
             print('Ingresa una opcion valida... (1 - 2)')
 
 # Level choice
+
 
 def level_choice(name):
     while True:
